@@ -1,12 +1,16 @@
 // src/UniversitySelector.js
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 
 const UniversitySelector = () => {
     const [universities, setUniversities] = useState([]);
+    const [filteredUniversities, setFilteredUniversities] = useState([]);
     const [selectedUniversity, setSelectedUniversity] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const dropdownRef = useRef(null); // Reference for the dropdown container
 
     useEffect(() => {
         const fetchUniversities = async () => {
@@ -17,6 +21,7 @@ const UniversitySelector = () => {
                     'https://raw.githubusercontent.com/Hipo/university-domains-list/refs/heads/master/world_universities_and_domains.json'
                 );
                 setUniversities(response.data);
+                setFilteredUniversities(response.data.slice(0, 6)); // Show first 6 initially
             } catch (error) {
                 setError('Failed to load universities. Please try again later.');
                 console.error('Error fetching universities:', error);
@@ -28,33 +33,79 @@ const UniversitySelector = () => {
         fetchUniversities();
     }, []); // Ensure this runs only once
 
-    const handleSelect = (event) => {
-        const universityName = event.target.value;
-        const university = universities.find((uni) => uni.name === universityName);
-        setSelectedUniversity(university || null); // Ensure valid selection
+    const handleSelect = (university) => {
+        setSelectedUniversity(university); // Set selected university
+        setIsDropdownOpen(false); // Close dropdown
+        setFilteredUniversities(universities.slice(0, 6)); // Reset filtered list
+        setSearchTerm(''); // Reset search term
     };
 
+    const handleSearch = (event) => {
+        const term = event.target.value.toLowerCase();
+        setSearchTerm(term);
+        const filtered = universities.filter((uni) =>
+            uni.name.toLowerCase().includes(term)
+        );
+        setFilteredUniversities(filtered.slice(0, 6));
+    };
+
+    // Close dropdown when clicking outside of it
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     return (
-        <div className="university-sel    ">
-            <div className="bg-white wel-back items-center text-center rounded-lg shadow-lg p-8   ">
-                <h1 className="text-4xl welcome-font font-bold text-center   mb-4">Welcome to Our Donation Platform</h1>
-                <p className="text-center text-white  mb-6">Please select your university:</p>
-                
+        <div className="university-sel">
+            <div className="bg-white wel-back items-center text-center rounded-lg shadow-lg p-8">
+                <h1 className="text-4xl welcome-font font-bold text-center mb-4">
+                    Welcome to Our Donation Platform
+                </h1>
+                <p className="text-center text-white mb-6">Please select your university:</p>
+
                 {loading && <p className="text-center text-gray-600">Loading universities...</p>}
                 {error && <p className="text-center text-red-500">{error}</p>}
-                
+
                 {!loading && !error && (
-                    <select
-                        onChange={handleSelect}
-                        className="border border-gray-300 input-color rounded p-2 w-1/2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                        <option value="">Select a university...</option>
-                        {universities.map((uni) => (
-                            <option key={uni.name} value={uni.name}>
-                                {uni.name}
-                            </option>
-                        ))}
-                    </select>
+                    <div className="relative w-1/2 mx-auto" ref={dropdownRef}>
+                        <button
+                            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                            className="border border-gray-300 input-color rounded p-2 w-full text-left focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                            {selectedUniversity ? selectedUniversity.name : 'Select a university...'}
+                        </button>
+
+                        {isDropdownOpen && (
+                            <div className="absolute z-10 w-full bg-white border border-gray-300 rounded mt-1 max-h-60 overflow-y-auto shadow-lg">
+                                <input
+                                    type="text"
+                                    value={searchTerm}
+                                    onChange={handleSearch}
+                                    placeholder="Search for a university..."
+                                    className="border-b border-gray-300 p-2 w-full focus:outline-none"
+                                />
+                                <ul className="max-h-48 overflow-y-auto">
+                                    {filteredUniversities.map((uni) => (
+                                        <li
+                                            key={uni.name}
+                                            onClick={() => handleSelect(uni)}
+                                            className="p-2 cursor-pointer hover:bg-blue-100 text-gray-700"
+                                        >
+                                            {uni.name}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
                 )}
 
                 {selectedUniversity && (
