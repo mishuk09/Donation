@@ -71,7 +71,7 @@ const UniversityDetails = () => {
 
 
                     <div className="flex-grow  mt-[-100px]   relative flex items-center justify-center p-4">
-                        <div className="main-div   overflow-hidden flex gap-4 flex-col md:flex-row max-w-5xl w-full">
+                        <div className="main-div h-auto  overflow-hidden flex gap-4 flex-col md:flex-row max-w-5xl w-full">
                             <AboutSection />
                             <SupportSection />
                         </div>

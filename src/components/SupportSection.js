@@ -16,7 +16,7 @@ const SupportSection = () => {
     };
 
     return (
-        <div className="p-6 bg-white w-full support-section rounded-2xl   flex flex-col">
+        <div className="p-6 bg-white w-full h-auto support-section rounded-2xl   flex flex-col">
             <h2 className="text-2xl font-bold secondary-font mb-6  ">Give a Meal to College Student</h2>
 
             {/* Meal Selection */}
@@ -45,22 +45,22 @@ const SupportSection = () => {
             <input
                 type="text"
                 required
-                placeholder="  Email"
+                placeholder="  Email *"
                 className="w-full   p-4 text-sm mb-4 border  bg-gray-100 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />
             <input
                 type="text"
-                placeholder="Name (Mandatory for Sponsored)"
-                className="w-full p-4 text-sm mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
+                placeholder="Name *"
+                className="w-full p-4 text-sm mb-4 border bg-gray-100 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
                 value={sponsorName}
                 onChange={(e) => setSponsorName(e.target.value)}
             />
             <input
                 type="text"
                 placeholder="Sponsor Link (Optional)"
-                className="w-full p-4 text-sm mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
+                className="w-full p-4 text-sm mb-4 border bg-gray-100 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
                 value={sponsorLink}
                 onChange={(e) => setSponsorLink(e.target.value)}
             />
