@@ -1,4 +1,13 @@
 import React, { useState } from 'react';
+import applepay from './Payment/img/applepay.svg';
+import am from './Payment/img/am.svg';
+import gpay from './Payment/img/gpay.svg';
+import master from './Payment/img/master.svg';
+import paypal from './Payment/img/paypal.svg';
+import shopify from './Payment/img/shopify.svg';
+// import union from './Payment/img/union.svg';
+import union from './Payment/img/stripe.png';
+import visa from './Payment/img/visa.svg';
 
 const SupportSection = () => {
     const [quantity, setQuantity] = useState(1);
@@ -17,7 +26,7 @@ const SupportSection = () => {
 
     return (
         <div className='flex w-full flex-col gap-4'>
-            <div className="p-6 bg-white w-full  h-[480px] support-section rounded-2xl   flex flex-col">
+            <div className="p-6 bg-white w-full  h-[580px] support-section rounded-2xl   flex flex-col">
                 <h2 className="text-2xl font-bold secondary-font mb-6  ">Give a Meal to College Student</h2>
 
                 {/* Meal Selection */}
@@ -70,6 +79,18 @@ const SupportSection = () => {
                 <button className="bg-blue-500  mt-6 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition duration-300 shadow-md">
                     Support ${calculateAmount()}
                 </button>
+
+
+                <div class="flex gap-3 mt-10 items-center text-center justify-center">
+                    <img class=" w-10" src={applepay} alt="" />
+                    <img class=" w-10" src={am} alt="" />
+                    <img class=" w-10" src={gpay} alt="" />
+                    <img class=" w-10" src={master} alt="" />
+                    <img class=" w-10" src={paypal} alt="" />
+                    <img class=" w-10" src={shopify} alt="" />
+                    <img class=" w-10 border p-[5px] rounded-sm" src={union} alt="" />
+                    <img class=" w-10" src={visa} alt="" />
+                </div>
             </div>
 
 
