@@ -45,7 +45,7 @@ body {
 }
 
 .bg-cover {
-  background-color: var(--bg-color);
+  /* background-color: var(--bg-color); */
   color: var(--font-color);
 }
 

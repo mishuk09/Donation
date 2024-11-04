@@ -42,16 +42,16 @@ const UniversityDetails = () => {
                 <div className="min-h-screen relative flex flex-col">
 
                     <div
-                        className="relative   text-center items-center justify-center bg-cover bg-center h-[350px]"
-                        style={{
-                            backgroundImage: "url('https://media.istockphoto.com/id/1211101154/photo/a-refugee-homeless-child-standing-in-a-dark-room-with-sad-expression.webp?a=1&b=1&s=612x612&w=0&k=20&c=i7Qz5QBt1lTLrsjAcMnJ5vTG0UGOx2jSL7NUYTEEbw0=')",
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                        }}
+                        className="relative bg-gray-900 text-center items-center justify-center bg-cover bg-center h-[350px]"
+                    // style={{
+                    //     backgroundImage: "url('https://media.istockphoto.com/id/1211101154/photo/a-refugee-homeless-child-standing-in-a-dark-room-with-sad-expression.webp?a=1&b=1&s=612x612&w=0&k=20&c=i7Qz5QBt1lTLrsjAcMnJ5vTG0UGOx2jSL7NUYTEEbw0=')",
+                    //     backgroundSize: 'cover',
+                    //     backgroundPosition: 'center',
+                    // }}
                     >
 
 
-                        <div className="absolute inset-0 bg-black opacity-70"></div>
+                        {/* <div className="absolute inset-0 "></div> */}
                         <Link to='/' className='max-w-5xl left-10 top-6 absolute text-white'>
                             Home
                         </Link>
