@@ -38,6 +38,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import UniversityDetails from './components/UniversityDetails'; // Import the new component
 
 import UniversitySelector from './components/University/UniversitySelector';
+import UploadJSON from './components/UploadJSON';
+import DisplayData from './components/DisplayData';
 
 function App() {
   return (
@@ -45,6 +47,8 @@ function App() {
       <div className="min-h-screen relative flex flex-col">
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="/upload-json" element={<UploadJSON />} />
+          <Route path="/display-json" element={<DisplayData />} />
           <Route path="/university/:domain" element={<UniversityDetails />} />
         </Routes>
       </div>
