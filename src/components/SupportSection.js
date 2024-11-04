@@ -26,7 +26,7 @@ const SupportSection = () => {
 
     return (
         <div className='flex w-full flex-col gap-4'>
-            <div className="p-6 bg-white w-full  h-[580px] support-section rounded-2xl   flex flex-col">
+            <div className="p-6 bg-white w-full  h-[550px] support-section rounded-2xl   flex flex-col">
                 <h2 className="text-2xl font-bold secondary-font mb-6  ">Give a Meal to College Student</h2>
 
                 {/* Meal Selection */}
