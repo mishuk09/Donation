@@ -1,6 +1,6 @@
 // src/components/UniversityDetails.js
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import AboutSection from './AboutSection';
 import SupportSection from './SupportSection';
@@ -36,29 +36,11 @@ const UniversityDetails = () => {
 
     return (
         <div className=" bg-gray-200">
-            {/* <div>
 
-
-                {university ? (
-                    <div className="bg-white p-6 rounded-lg shadow-lg">
-                        <h1 className="text-2xl font-bold mb-4">{university.name}</h1>
-                        <p className="text-lg">Country: {university.country}</p>
-                        <p className="text-lg">Domain: {university.domains[0]}</p>
-                        <a
-                            href={`http://${university.domains[0]}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-600 hover:underline mt-4 block"
-                        >
-                            Visit University Website
-                        </a>
-                    </div>
-                ) : (
-                    <p>University details not found.</p>
-                )}
-            </div> */}
             <div>
+
                 <div className="min-h-screen relative flex flex-col">
+
                     <div
                         className="relative   text-center items-center justify-center bg-cover bg-center h-[350px]"
                         style={{
@@ -67,7 +49,12 @@ const UniversityDetails = () => {
                             backgroundPosition: 'center',
                         }}
                     >
+
+
                         <div className="absolute inset-0 bg-black opacity-70"></div>
+                        <Link to='/' className='max-w-5xl left-10 top-6 absolute text-white'>
+                            Home
+                        </Link>
                         <div className="absolute inset-0 mt-[100px] mx-auto text-center items-center  w-1/2  justify-center">
                             <h1 className="text-white text-4xl font-bold">{university.name}</h1>
                             <p className="text-lg text-white mt-2">  {university.country}</p>

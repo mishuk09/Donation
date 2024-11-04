@@ -44,8 +44,9 @@ const SupportSection = () => {
             {/* Input Fields */}
             <input
                 type="text"
+                required
                 placeholder="  Email"
-                className="w-full p-4 text-sm mb-4 border  bg-gray-100 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
+                className="w-full   p-4 text-sm mb-4 border  bg-gray-100 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />

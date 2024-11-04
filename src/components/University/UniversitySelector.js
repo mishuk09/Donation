@@ -71,23 +71,23 @@ const UniversitySelector = () => {
                 {loading && <p className="text-center text-gray-600">Loading universities...</p>}
                 {error && <p className="text-center text-red-500">{error}</p>}
                 {!loading && !error && (
-                    <div className="relative w-1/2 mx-auto" ref={dropdownRef}>
+                    <div className="relative w-full mx-auto" ref={dropdownRef}>
                         <button
                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                            className="border border-gray-300 input-color rounded p-2 w-full text-left focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="border border-gray-300 input-color rounded p-2 w-[80%]  text-left focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
                             Select a university...
                         </button>
                         {isDropdownOpen && (
-                            <div className="absolute z-10 w-full bg-white border border-gray-300 rounded mt-1 max-h-60 overflow-y-auto shadow-lg">
+                            <div className="absolute  z-10 mx-auto  w-full bg-white border border-gray-300 rounded mt-1 max-h-60 overflow-y-hidden shadow-lg">
                                 <input
                                     type="text"
                                     value={searchTerm}
                                     onChange={handleSearch}
                                     placeholder="Search for a university..."
-                                    className="border-b border-gray-300 p-2 w-full focus:outline-none"
+                                    className="border-b border-gray-300 p-1 text-sm w-full focus:outline-none"
                                 />
-                                <ul className="max-h-48 overflow-y-auto">
+                                {/* <ul className="max-h-30 text-center overflow-y-hidden">
                                     {filteredUniversities.map((uni) => (
                                         <li
                                             key={uni.name}
@@ -97,7 +97,19 @@ const UniversitySelector = () => {
                                             {uni.name}
                                         </li>
                                     ))}
+                                </ul> */}
+                                <ul className="max-h-30 text-left overflow-y-hidden"> {/* Change text-center to text-left */}
+                                    {filteredUniversities.map((uni) => (
+                                        <li
+                                            key={uni.name}
+                                            onClick={() => handleSelect(uni)}
+                                            className="p-2 cursor-pointer hover:bg-blue-100 text-gray-700 text-left"  
+                                        >
+                                            {uni.name}
+                                        </li>
+                                    ))}
                                 </ul>
+
                             </div>
                         )}
                     </div>
