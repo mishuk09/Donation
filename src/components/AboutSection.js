@@ -58,7 +58,7 @@ const AboutSection = () => {
                 className={`overflow-hidden transition-max-height duration-300 ease-in-out ${openSection === section.title ? 'max-h-40' : 'max-h-0'}`}
               >
                 {openSection === section.title && (
-                  <p className="mt-2 text-gray-600 text-sm">{section.content}</p>
+                  <p className="mt-2   para  ">{section.content}</p>
                 )}
               </div>
             </div>
