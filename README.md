@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# Getting Started with Your React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and is hosted on Firebase.
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+- **`npm start`**: Runs the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser. The page will reload as you make changes, and you may see lint errors in the console.
+  
+- **`npm test`**: Launches the test runner in interactive watch mode. See more details [here](https://facebook.github.io/create-react-app/docs/running-tests).
+  
+- **`npm run build`**: Builds the app for production to the `build` folder. This correctly bundles React in production mode, minifying the files and optimizing for the best performance. Your app is ready to be deployed!
+## Running/Developing locally
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. **Stripe setup**  
+   Install stripe cli - https://docs.stripe.com/stripe-cli
+    ```bash
+   stripe login
+   stripe listen --forward-to localhost:5000/restaurant-app-25f83/us-central1/onPayment
+2. **Configure .env variables**  
+   - create .env file in project root
+   - add REACT_APP_STRIPE_PUBLIC_KEY
+   - add STRIPE_SECRET_KEY
+   - add STRIPE_WEBHOOK_SECRET
+   - export env variables
+     - for windows 
+     ```bash
+     for /F "tokens=1,2 delims==" %i in (.env) do set %i=%j
+     ```
+     - for linux/mac
+     ```bash
+     source .env
+     ```
+3. **Start React server**  
+   ```bash
+    npm start
+4. **Firebase setup**  
+   Only required if not done before
+   ```bash
+   npm install -g firebase-tools
+   firebase login
+5. **Build firebase functions**  
+   ```bash
+   cd functions
+   npm run build
+6. **Run firebase emulators**  
+    ```bash
+   firebase emulators init
+   ```
+   Select at-least functions, firestore emulators
+    ```bash
+   firebase emulators:start
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Now the local instance should be ready for testing/development
+   
+## Firebase Hosting Instructions
 
-### `npm test`
+To host this app on Firebase, follow these steps:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Install Firebase CLI**  
+   Install the Firebase CLI globally if it’s not already installed:
+   ```bash
+   npm install -g firebase-tools
+2. **Login to Firebase**  
+   Log in to your Firebase account:
+   ```bash
+   firebase login
+3. **Initialize Firebase**  
+  In your project root directory, initialize Firebase for this project:
+   ```bash
+   firebase init
+4. **Build Your React App**  
+ To prepare for deployment, create a production build:
+   ```bash
+   npm run build
+5. **Deploy to Firebase Hosting**  
+ Deploy your app to firebase hosting:
+   ```bash
+   firebase deploy --only hosting:bolsofra8
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Note: 1.hosting:bolsofra8 this is the name of our projects in firebase
